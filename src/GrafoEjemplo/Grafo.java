@@ -13,25 +13,26 @@ import Lista.NodoListaSimple;
  * @author Maxi
  */
 public class Grafo {
-    public NodoListaSimple[] aeropuertos;
+    public NodoListaSimple[] ListaAdyacencia;
+    public NodoListaSimple[] ListaAristas;
     private int nroAristas;
     public Grafo(int cant){
-        aeropuertos = new NodoListaSimple [cant];
-        for(int i = 0; i < aeropuertos.length;i++){
-			for (int j = 0; j < aeropuertos.length; j++){
+        ListaAdyacencia = new NodoListaSimple [cant];
+        for(int i = 0; i < ListaAdyacencia.length;i++){
+			for (int j = 0; j < ListaAdyacencia.length; j++){
                                 Vertice unAeropuerto = new Vertice();
-				aeropuertos[i] = new NodoListaSimple(unAeropuerto);
+				ListaAdyacencia[i] = new NodoListaSimple(unAeropuerto);
 			}
 		}
     }
     public void agregarVertice(Grafo g, Vertice v){
         if(!existeVertice(v)){
-            for (int i = 0; i < aeropuertos.length; i++) {
-                Vertice elVertice = (Vertice)aeropuertos[i].getDato();
+            for (int i = 0; i < ListaAdyacencia.length; i++) {
+                Vertice elVertice = (Vertice)ListaAdyacencia[i].getDato();
                 if (elVertice.getNombAeropuerto() == null) { // si el vertice esta vacio
                     elVertice.setNombAeropuerto(v.getNombAeropuerto());
-                    aeropuertos[i].setDato(elVertice);
-                    System.out.println("Se agrego Correctamente tu Aeropuerto: " + String.valueOf(aeropuertos[i].getDato())  );
+                    ListaAdyacencia[i].setDato(elVertice);
+                    System.out.println("Se agrego Correctamente tu Aeropuerto: " + String.valueOf(ListaAdyacencia[i].getDato())  );
                     break;
                 }
             }
@@ -57,15 +58,15 @@ public class Grafo {
         return true;
     }
     public  NodoListaSimple[] VerticesAdyacentes(Grafo g, Vertice v){
-        return aeropuertos;
+        return ListaAdyacencia;
        
     }
     public static Boolean sonAdyacentes(Vertice a, Vertice b){
         return true;
     }
     public  Boolean existeVertice (Vertice v){
-        for(int i = 0; i < aeropuertos.length; i++){
-            Vertice aux = (Vertice)aeropuertos[i].getDato();
+        for(int i = 0; i < ListaAdyacencia.length; i++){
+            Vertice aux = (Vertice)ListaAdyacencia[i].getDato();
             if(aux.getNombAeropuerto()!= null)
                 if(aux.getNombAeropuerto().equals(v.getNombAeropuerto()))
                     return true;
